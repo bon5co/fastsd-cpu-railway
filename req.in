@@ -1,0 +1,15 @@
+# FastSD CPU (rupeshs/fastsdcpu, MIT) runs SDXS-512 through optimum-intel's OVStableDiffusionPipeline on OpenVINO;
+# its requirements.txt pins optimum-intel 2.0.0, openvino 2026.2.0, diffusers 0.37.0 and transformers 5.0.0, and this
+# image uses the same four (its Gradio UI, PyQt and MCP server are not needed by an API).
+optimum-intel==2.0.0
+openvino==2026.2.0
+diffusers==0.37.0
+transformers==5.0.0
+accelerate==1.14.0
+onnx==1.21.0
+torch==2.9.1
+numpy<2.4
+pillow
+fastapi==0.165.0
+uvicorn==0.54.0
+huggingface_hub

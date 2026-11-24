@@ -1,0 +1,19 @@
+Wrapper code in this repository (app.py, fetch_weights.py, entrypoint.sh, Dockerfile) is Apache-2.0, see LICENSE.
+
+The container image built from it contains:
+
+- The approach of FastSD CPU (https://github.com/rupeshs/fastsdcpu), MIT License, Copyright (c) 2023 Rupesh
+  Sreeraman: SDXS-512 served through optimum-intel's OVStableDiffusionPipeline on OpenVINO, one step, guidance 1.0.
+  FastSD CPU itself is not installed; its licence text ships in the image at /licenses/fastsdcpu-LICENSE.
+- The model weights rupeshs/sdxs-512-0.9-openvino (https://huggingface.co/rupeshs/sdxs-512-0.9-openvino), pinned to
+  commit f6cacf7a521e8801904f821bafa9dec7e4d10594 in fetch_weights.py: an OpenVINO conversion of
+  IDKiro/sdxs-512-0.9 (https://huggingface.co/IDKiro/sdxs-512-0.9), both declared `license: openrail++` and
+  ungated (read 2026-11-24). OpenRAIL++ permits commercial use but carries use-based restrictions that pass to
+  anyone who uses the model: read the licence at https://huggingface.co/spaces/CompVis/stable-diffusion-license
+  (CreativeML OpenRAIL++-M) before building a product on the output.
+- optimum-intel (Apache-2.0), OpenVINO (Apache-2.0), diffusers (Apache-2.0), transformers (Apache-2.0), PyTorch
+  (BSD-3-Clause), FastAPI (MIT), uvicorn (BSD-3-Clause) and the other Python dependencies pinned in requirements.txt,
+  each under its own licence.
+
+The model has no safety checker: the image never filters what it draws. The operator is responsible for what the
+API is asked to draw.

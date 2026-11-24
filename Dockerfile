@@ -4,7 +4,8 @@
 # upstream: rupeshs/fastsdcpu (MIT) is the project whose SDXS-512 OpenVINO path this serves; it is not installed (its GUI,
 # Qt and MCP server are not needed): the same optimum-intel 2.0.0 / openvino 2026.2.0 / diffusers 0.37.0 / transformers 5.0.0
 # pins as fastsdcpu commit 10ed947f16cd35479a1d202be4e1309e243fd767 (main, checked 2026-11-24) are installed from PyPI, and
-# the weights are rupeshs/sdxs-512-0.9-openvino at commit f6cacf7a521e8801904f821bafa9dec7e4d10594.
+# the weights are rupeshs/sdxs-512-0.9-openvino at commit f6cacf7a521e8801904f821bafa9dec7e4d10594 and the tiny autoencoder
+# rupeshs/taesd-ov (MIT) at commit 035ad7cc7e7258b69378894821a3e5c52cd4b547.
 FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
@@ -18,9 +19,10 @@ ENV MODEL_ROOT=/models
 COPY fetch_weights.py /tmp/fetch_weights.py
 RUN python /tmp/fetch_weights.py && find /models -name .cache -type d -prune -exec rm -rf {} + && rm -rf /root/.cache && du -sh /models
 
-# MIT licence of rupeshs/fastsdcpu at the pinned commit; OpenRAIL++ text is quoted in NOTICE and the readme.
+# MIT licence of rupeshs/fastsdcpu at the pinned commit; the OpenRAIL++-M licence text ships beside it (paragraph 4 requires giving recipients a copy).
 COPY LICENSE-fastsdcpu /licenses/fastsdcpu-LICENSE
 COPY NOTICE /licenses/NOTICE
+COPY LICENSE-openrail-pp-m /licenses/CreativeML-OpenRAIL++-M-LICENSE
 
 RUN useradd --uid 1000 --create-home --shell /usr/sbin/nologin img \
     && chmod -R a+rX /models /licenses

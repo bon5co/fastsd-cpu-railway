@@ -11,6 +11,12 @@ The container image built from it contains:
   ungated (read 2026-11-24). OpenRAIL++ permits commercial use but carries use-based restrictions that pass to
   anyone who uses the model: read the licence at https://huggingface.co/spaces/CompVis/stable-diffusion-license
   (CreativeML OpenRAIL++-M) before building a product on the output.
+- The tiny autoencoder rupeshs/taesd-ov (https://huggingface.co/rupeshs/taesd-ov), pinned to commit
+  035ad7cc7e7258b69378894821a3e5c52cd4b547 in fetch_weights.py: an OpenVINO conversion of madebyollin/taesd, both
+  declared `license: mit` and ungated (read 2026-11-24). It is the decoder SDXS-512-0.9 was trained with.
+- The CreativeML Open RAIL++-M License dated July 26, 2023 (Copyright (c) 2023 Stability AI) is shipped in the image at
+  /licenses/CreativeML-OpenRAIL++-M-LICENSE and in this repository as LICENSE-openrail-pp-m. Paragraph 5 and
+  Attachment A (use-based restrictions) bind every user of the model, and anyone you let use it must be told so.
 - optimum-intel (Apache-2.0), OpenVINO (Apache-2.0), diffusers (Apache-2.0), transformers (Apache-2.0), PyTorch
   (BSD-3-Clause), FastAPI (MIT), uvicorn (BSD-3-Clause) and the other Python dependencies pinned in requirements.txt,
   each under its own licence.
